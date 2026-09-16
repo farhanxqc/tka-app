@@ -136,7 +136,7 @@ function StatsCard() {
                 Belum ada sesi latihan tercatat.
               </p>
               <Button
-                size="default"
+                size="lg"
                 nativeButton={false}
                 render={<Link href="/tryout" />}
               >

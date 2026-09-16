@@ -1,0 +1,181 @@
+
+> tka-app@0.1.0 dev
+> next dev
+
+▲ Next.js 16.3.5 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.4:3000
+- Environments: .env.local
+✓ Ready in 718ms
+⚠ Warning: Next.js ignored package-lock.json in C:\Users\Admin because it would include your home directory (C:\Users\Admin).
+ To use this directory, set `turbopack.root` in your Next.js config.
+
+✓ Running next.config.ts took 66ms
+
+○ Compiling /belajar ...
+ GET /belajar 200 in 26.8s (next.js: 26.1s, application-code: 697ms)
+ GET /belajar 200 in 125ms (next.js: 17ms, application-code: 108ms)
+ GET / 200 in 169ms (next.js: 49ms, application-code: 121ms)
+ GET /tryout 200 in 104ms (next.js: 41ms, application-code: 62ms)
+ GET / 200 in 40ms (next.js: 6ms, application-code: 34ms)
+ GET /tryout 200 in 30ms (next.js: 5ms, application-code: 25ms)
+ GET /belajar 200 in 30ms (next.js: 5ms, application-code: 24ms)
+ GET /pdf 200 in 182ms (next.js: 150ms, application-code: 32ms)
+ GET /belajar 200 in 68ms (next.js: 6ms, application-code: 62ms)
+ GET / 200 in 47ms (next.js: 7ms, application-code: 40ms)
+ GET /tryout 200 in 52ms (next.js: 8ms, application-code: 44ms)
+ GET /belajar 200 in 29ms (next.js: 4ms, application-code: 25ms)
+ GET /tryout 200 in 30ms (next.js: 5ms, application-code: 25ms)
+ GET /belajar 200 in 30ms (next.js: 5ms, application-code: 25ms)
+ GET /pdf 200 in 31ms (next.js: 3ms, application-code: 27ms)
+ GET /pdf 200 in 41ms (next.js: 8ms, application-code: 33ms)
+ GET /pdf 200 in 83ms (next.js: 4ms, application-code: 79ms)
+✓ Compiled in 369ms
+ GET /pdf 200 in 98ms (next.js: 25ms, application-code: 73ms)
+ GET /pdf 200 in 34ms (next.js: 5ms, application-code: 29ms)
+ GET /pdf 200 in 43ms (next.js: 5ms, application-code: 38ms)
+ GET /pdf 200 in 42ms (next.js: 4ms, application-code: 38ms)
+ GET /pdf 200 in 51ms (next.js: 19ms, application-code: 32ms)
+ GET /pdf 200 in 83ms (next.js: 17ms, application-code: 66ms)
+✓ Compiled in 1390ms
+ GET /pdf 200 in 41ms (next.js: 10ms, application-code: 31ms)
+ GET /tryout 200 in 189ms (next.js: 31ms, application-code: 158ms)
+ GET /tryout 200 in 86ms (next.js: 5ms, application-code: 81ms)
+ GET /belajar 200 in 128ms (next.js: 28ms, application-code: 100ms)
+ GET /belajar 200 in 105ms (next.js: 6ms, application-code: 99ms)
+ GET /pdf 200 in 124ms (next.js: 4ms, application-code: 120ms)
+ GET /pdf 200 in 85ms (next.js: 3ms, application-code: 82ms)
+ GET /belajar 200 in 138ms (next.js: 7ms, application-code: 131ms)
+ GET /tryout 200 in 129ms (next.js: 7ms, application-code: 121ms)
+ GET /belajar 200 in 188ms (next.js: 5ms, application-code: 184ms)
+ GET /pdf 200 in 95ms (next.js: 5ms, application-code: 90ms)
+ GET /pdf 200 in 144ms (next.js: 9ms, application-code: 135ms)
+ GET / 200 in 75ms (next.js: 24ms, application-code: 51ms)
+ GET /tryout 200 in 45ms (next.js: 10ms, application-code: 35ms)
+ GET / 200 in 22ms (next.js: 3ms, application-code: 19ms)
+ GET /tryout 200 in 49ms (next.js: 9ms, application-code: 41ms)
+ GET / 200 in 567ms (next.js: 543ms, application-code: 24ms)
+ GET / 200 in 34ms (next.js: 3ms, application-code: 31ms)
+ GET /tryout 200 in 164ms (next.js: 136ms, application-code: 28ms)
+ GET /belajar 200 in 1074ms (next.js: 1048ms, application-code: 26ms)
+ GET /belajar 200 in 53ms (next.js: 10ms, application-code: 43ms)
+ GET /pdf 200 in 77ms (next.js: 53ms, application-code: 24ms)
+✓ Finished filesystem cache database compaction in 18.9s
+ GET /tryout 200 in 32ms (next.js: 3ms, application-code: 28ms)
+ GET /belajar 200 in 42ms (next.js: 8ms, application-code: 34ms)
+ GET /tryout 200 in 89ms (next.js: 4ms, application-code: 85ms)
+ GET /tryout 200 in 37ms (next.js: 3ms, application-code: 34ms)
+ GET /tryout 200 in 59ms (next.js: 10ms, application-code: 49ms)
+ GET /tryout 200 in 53ms (next.js: 20ms, application-code: 34ms)
+ GET /tryout 200 in 38ms (next.js: 12ms, application-code: 26ms)
+✓ Compiled in 897ms
+ GET /tryout 200 in 41ms (next.js: 4ms, application-code: 36ms)
+✓ Compiled in 281ms
+✓ Compiled in 108ms
+ GET /tryout 200 in 87ms (next.js: 7ms, application-code: 80ms)
+✓ Compiled in 1110ms
+ GET /tryout 200 in 44ms (next.js: 7ms, application-code: 36ms)
+ GET /belajar 200 in 128ms (next.js: 43ms, application-code: 85ms)
+ GET /tryout 200 in 127ms (next.js: 13ms, application-code: 114ms)
+ GET /pdf 200 in 172ms (next.js: 43ms, application-code: 129ms)
+ GET /belajar 200 in 94ms (next.js: 5ms, application-code: 88ms)
+ GET /belajar 200 in 101ms (next.js: 8ms, application-code: 93ms)
+ GET /tryout 200 in 139ms (next.js: 6ms, application-code: 133ms)
+ GET /tryout 200 in 93ms (next.js: 4ms, application-code: 89ms)
+ GET /tryout 200 in 103ms (next.js: 4ms, application-code: 98ms)
+ GET /pdf 200 in 81ms (next.js: 4ms, application-code: 77ms)
+ GET /pdf 200 in 103ms (next.js: 5ms, application-code: 99ms)
+ GET /pdf 200 in 86ms (next.js: 6ms, application-code: 80ms)
+ GET /tryout 200 in 99ms (next.js: 9ms, application-code: 89ms)
+ GET / 200 in 148ms (next.js: 21ms, application-code: 127ms)
+ GET /tryout 200 in 31ms (next.js: 4ms, application-code: 27ms)
+ GET /belajar 200 in 29ms (next.js: 4ms, application-code: 25ms)
+ GET /pdf 200 in 24ms (next.js: 4ms, application-code: 20ms)
+ GET / 200 in 33ms (next.js: 5ms, application-code: 28ms)
+ GET /tryout 200 in 32ms (next.js: 3ms, application-code: 29ms)
+ GET /belajar 200 in 33ms (next.js: 4ms, application-code: 29ms)
+ GET /pdf 200 in 28ms (next.js: 6ms, application-code: 22ms)
+ GET /pdf 200 in 57ms (next.js: 14ms, application-code: 42ms)
+✓ Compiled in 128ms
+ GET /pdf 200 in 50ms (next.js: 6ms, application-code: 43ms)
+ GET /pdf 200 in 149ms (next.js: 26ms, application-code: 124ms)
+ GET /belajar 200 in 62ms (next.js: 17ms, application-code: 46ms)
+ GET /tryout 200 in 162ms (next.js: 85ms, application-code: 77ms)
+ GET /belajar 200 in 204ms (next.js: 21ms, application-code: 183ms)
+ GET /tryout 200 in 100ms (next.js: 18ms, application-code: 83ms)
+ GET /pdf 200 in 93ms (next.js: 13ms, application-code: 81ms)
+ GET / 200 in 191ms (next.js: 76ms, application-code: 115ms)
+ GET /tryout 200 in 107ms (next.js: 18ms, application-code: 90ms)
+ GET / 200 in 100ms (next.js: 12ms, application-code: 88ms)
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+▲ Next.js 16.3.5 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.5:3000
+- Environments: .env.local
+✓ Ready in 3.3s
+⚠ Warning: Next.js ignored package-lock.json in C:\Users\Admin because it would include your home directory (C:\Users\Admin).
+ To use this directory, set `turbopack.root` in your Next.js config.
+
+✓ Running next.config.ts took 329ms
+⚠ Slow filesystem detected. The benchmark took 206ms. If \\?\C:\Users\Admin\Desktop\Website TKA\tka-app\.next\dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+
+○ Compiling / ...
+ GET / 200 in 28.0s (next.js: 26.1s, application-code: 1881ms)
+ GET /manifest.webmanifest 200 in 2.3s (next.js: 2.1s, application-code: 174ms)
+ GET / 200 in 227ms (next.js: 31ms, application-code: 197ms)
+ GET /manifest.webmanifest 200 in 47ms (next.js: 17ms, application-code: 30ms)
+ GET / 200 in 180ms (next.js: 16ms, application-code: 165ms)
+ GET /manifest.webmanifest 200 in 32ms (next.js: 13ms, application-code: 20ms)
+ GET / 200 in 196ms (next.js: 18ms, application-code: 178ms)
+ GET /manifest.webmanifest 200 in 40ms (next.js: 15ms, application-code: 25ms)
+ GET / 200 in 212ms (next.js: 21ms, application-code: 191ms)
+ GET /manifest.webmanifest 200 in 43ms (next.js: 17ms, application-code: 26ms)
+ GET / 200 in 226ms (next.js: 18ms, application-code: 207ms)
+ GET / 200 in 172ms (next.js: 14ms, application-code: 158ms)
+ GET /manifest.webmanifest 200 in 32ms (next.js: 12ms, application-code: 20ms)
+ GET / 200 in 154ms (next.js: 13ms, application-code: 140ms)
+ GET /manifest.webmanifest 200 in 24ms (next.js: 9ms, application-code: 16ms)
+ GET / 200 in 151ms (next.js: 12ms, application-code: 138ms)
+ GET /manifest.webmanifest 200 in 35ms (next.js: 12ms, application-code: 24ms)
+✓ Compiled in 409ms
+ GET / 200 in 213ms (next.js: 69ms, application-code: 144ms)
+ GET /manifest.webmanifest 200 in 38ms (next.js: 14ms, application-code: 25ms)
+✓ Compiled in 1290ms
+ GET / 200 in 178ms (next.js: 37ms, application-code: 140ms)
+ GET /manifest.webmanifest 200 in 31ms (next.js: 12ms, application-code: 19ms)
+ GET / 200 in 196ms (next.js: 17ms, application-code: 179ms)
+ GET / 200 in 239ms (next.js: 17ms, application-code: 222ms)
+ GET /manifest.webmanifest 200 in 45ms (next.js: 17ms, application-code: 28ms)
+ GET / 200 in 181ms (next.js: 16ms, application-code: 165ms)
+ GET /manifest.webmanifest 200 in 41ms (next.js: 17ms, application-code: 24ms)
+ GET / 200 in 128ms (next.js: 14ms, application-code: 114ms)
+ GET /manifest.webmanifest 200 in 31ms (next.js: 15ms, application-code: 16ms)
+ GET / 200 in 177ms (next.js: 17ms, application-code: 161ms)
+ GET /manifest.webmanifest 200 in 37ms (next.js: 19ms, application-code: 18ms)
+ GET / 200 in 164ms (next.js: 26ms, application-code: 138ms)
+ GET /manifest.webmanifest 200 in 34ms (next.js: 17ms, application-code: 17ms)
+ GET / 200 in 151ms (next.js: 11ms, application-code: 140ms)
+ GET /manifest.webmanifest 200 in 29ms (next.js: 13ms, application-code: 17ms)
+ GET /tryout 200 in 2.5s (next.js: 1005ms, application-code: 1492ms)
+○ Compiling /robots.txt ...
+ GET /manifest.webmanifest 200 in 74ms (next.js: 57ms, application-code: 17ms)
+ GET /sitemap.xml 200 in 1217ms (next.js: 1194ms, application-code: 23ms)
+ GET /robots.txt 200 in 103ms (next.js: 87ms, application-code: 16ms)
+ GET / 200 in 1723ms (next.js: 955ms, application-code: 768ms)
+ GET /manifest.webmanifest 200 in 84ms (next.js: 19ms, application-code: 65ms)
+ GET /tryout 200 in 437ms (next.js: 278ms, application-code: 159ms)
+ GET /tryout 200 in 248ms (next.js: 53ms, application-code: 196ms)
+ GET /manifest.webmanifest 200 in 69ms (next.js: 21ms, application-code: 48ms)
+ GET /manifest.webmanifest 200 in 50ms (next.js: 16ms, application-code: 34ms)
+ GET /belajar 200 in 1283ms (next.js: 881ms, application-code: 402ms)
+ GET /belajar 200 in 412ms (next.js: 124ms, application-code: 288ms)
+ GET /belajar 200 in 528ms (next.js: 36ms, application-code: 492ms)
+ GET /belajar 200 in 251ms (next.js: 28ms, application-code: 223ms)
+ GET /belajar 200 in 775ms (next.js: 92ms, application-code: 684ms)
+ GET /manifest.webmanifest 200 in 36ms (next.js: 15ms, application-code: 21ms)
+ GET /manifest.webmanifest 200 in 40ms (next.js: 17ms, application-code: 23ms)
+ GET /pdf 200 in 1256ms (next.js: 939ms, application-code: 317ms)
+ GET /manifest.webmanifest 200 in 48ms (next.js: 10ms, application-code: 38ms)
+ GET / 200 in 170ms (next.js: 15ms, application-code: 155ms)
+ GET /manifest.webmanifest 200 in 42ms (next.js: 9ms, application-code: 34ms)

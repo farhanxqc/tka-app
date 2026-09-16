@@ -203,14 +203,14 @@ export function QuizRunner({
         </motion.div>
       </AnimatePresence>
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-2">
         <Button
           variant="outline"
           onClick={() => setIndex((i) => Math.max(0, i - 1))}
           disabled={index === 0}
         >
           <ChevronLeft />
-          Sebelumnya
+          <span className="hidden sm:inline">Sebelumnya</span>
         </Button>
 
         <div className="hidden gap-1 sm:flex">
@@ -235,14 +235,15 @@ export function QuizRunner({
         {index === questions.length - 1 ? (
           <Button onClick={finish}>
             <Flag />
-            Selesai & Lihat Skor
+            <span className="hidden sm:inline">Selesai & Lihat Skor</span>
+            <span className="sm:hidden">Selesai</span>
           </Button>
         ) : (
           <Button
             variant="outline"
             onClick={() => setIndex((i) => Math.min(questions.length - 1, i + 1))}
           >
-            Berikutnya
+            <span className="hidden sm:inline">Berikutnya</span>
             <ChevronRight />
           </Button>
         )}

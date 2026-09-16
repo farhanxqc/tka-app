@@ -145,9 +145,9 @@ function StatsCard() {
               </Button>
             </div>
           ) : (
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3 sm:gap-6">
               <div>
-                <p className="text-3xl font-bold tabular-nums">
+                <p className="text-2xl font-bold tabular-nums sm:text-3xl">
                   {last ? Math.round((last.score / last.total) * 100) : 0}
                 </p>
                 <p className="text-[11px] text-muted-foreground">
@@ -155,11 +155,11 @@ function StatsCard() {
                 </p>
               </div>
               <div>
-                <p className="text-3xl font-bold tabular-nums">{avg ?? 0}</p>
+                <p className="text-2xl font-bold tabular-nums sm:text-3xl">{avg ?? 0}</p>
                 <p className="text-[11px] text-muted-foreground">Rata-rata</p>
               </div>
               <div>
-                <p className="text-3xl font-bold tabular-nums">
+                <p className="text-2xl font-bold tabular-nums sm:text-3xl">
                   {scores.length}
                 </p>
                 <p className="text-[11px] text-muted-foreground">Sesi</p>

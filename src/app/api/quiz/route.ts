@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { generateJSON } from "@/lib/gemini";
+import { generateJSON, isTransientError } from "@/lib/gemini";
 import { rateLimit, readIp } from "@/lib/rate-limit";
 import type { QuizQuestion, QuizRequest } from "@/lib/types";
 
@@ -62,6 +62,12 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ questions });
   } catch (error) {
+    if (isTransientError(error)) {
+      return NextResponse.json(
+        { error: "Layanan AI sedang sibuk (high demand). Coba lagi sebentar lagi." },
+        { status: 503 }
+      );
+    }
     const message =
       error instanceof Error ? error.message : "Gagal generate soal.";
     return NextResponse.json({ error: message }, { status: 500 });

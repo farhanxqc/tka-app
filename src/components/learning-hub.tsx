@@ -44,7 +44,7 @@ export function LearningHub() {
             type="button"
             onClick={() => setActive(c.name)}
             className={cn(
-              "rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-all",
+              "rounded-full px-4 py-2.5 text-sm font-medium text-muted-foreground transition-all",
               active === c.name
                 ? "bg-primary text-primary-foreground shadow-sm"
                 : "hover:bg-accent hover:text-foreground"
@@ -141,7 +141,7 @@ export function LearningHub() {
                   type="button"
                   aria-label="Tutup video"
                   onClick={() => setPlaying(null)}
-                  className="flex size-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                  className="flex size-11 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                 >
                   <X className="size-4" />
                 </button>

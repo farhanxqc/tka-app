@@ -76,7 +76,7 @@ export function Navbar() {
   const closeNav = () => setNavOpen(false);
 
   return (
-    <div className="pointer-events-none sticky top-4 z-40 px-3 sm:px-4">
+    <div className="pointer-events-none sticky top-[calc(1rem+env(safe-area-inset-top))] z-40 px-3 sm:px-4">
       <nav className="pointer-events-auto relative mx-auto flex w-full items-center gap-2 rounded-2xl border border-border/60 bg-background/80 py-2 pr-2 pl-3 shadow-lg shadow-foreground/5 backdrop-blur-xl sm:w-fit sm:rounded-full sm:pl-4">
         <div className="relative shrink-0">
           <button
@@ -84,7 +84,7 @@ export function Navbar() {
             aria-label="Foto profil"
             aria-expanded={profileOpen}
             onClick={() => setProfileOpen(!profileOpen)}
-            className="flex size-9 items-center justify-center overflow-hidden rounded-full ring-1 ring-border transition-shadow hover:shadow-md"
+            className="flex size-11 items-center justify-center overflow-hidden rounded-full ring-1 ring-border transition-shadow hover:shadow-md"
           >
             {photo ? (
               // eslint-disable-next-line @next/next/no-img-element
@@ -169,7 +169,7 @@ export function Navbar() {
             aria-label={navOpen ? "Tutup menu" : "Buka menu"}
             aria-expanded={navOpen}
             onClick={() => setNavOpen(!navOpen)}
-            className="flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground sm:hidden"
+            className="flex size-11 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground sm:hidden"
           >
             {navOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>

@@ -230,7 +230,7 @@ export function TryOutExperience() {
               <Flame className="size-5 text-amber-500" />
               {weekSessions}
             </p>
-            <p className="mt-1 line-clamp-2 text-[10px] text-muted-foreground">
+            <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">
               {last
                 ? `terakhir selesai — skor ${Math.round((last.score / last.total) * 100)}`
                 : "belum ada sesi — mulai sekarang"}
@@ -260,7 +260,7 @@ export function TryOutExperience() {
                     />
                   ))}
                 </div>
-                <p className="mt-1 text-[10px] text-muted-foreground">
+                <p className="mt-1 text-xs text-muted-foreground">
                   tren {sparkline.length} sesi terakhir
                 </p>
               </>
@@ -292,7 +292,7 @@ export function TryOutExperience() {
         <div className="flex gap-2">
           <Button
             variant={mode === "quick" ? "default" : "outline"}
-            size="sm"
+            size="default"
             onClick={() => setMode("quick")}
           >
             <Zap />
@@ -300,7 +300,7 @@ export function TryOutExperience() {
           </Button>
           <Button
             variant={mode === "custom" ? "default" : "outline"}
-            size="sm"
+            size="default"
             onClick={() => setMode("custom")}
           >
             <Wand2 />
@@ -350,7 +350,7 @@ export function TryOutExperience() {
                             className="object-cover transition-transform duration-500 group-hover:scale-110"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                          <span className="absolute top-2 right-2 rounded-full bg-black/40 px-2 py-0.5 text-[10px] font-medium text-white backdrop-blur-sm">
+                          <span className="absolute top-2 right-2 rounded-full bg-black/40 px-2 py-0.5 text-xs font-medium text-white backdrop-blur-sm">
                             {s.track}
                           </span>
                           <span className="absolute bottom-2 left-3 flex items-center gap-1.5 text-sm font-semibold text-white drop-shadow-md">
@@ -360,7 +360,7 @@ export function TryOutExperience() {
                         </div>
                         <div
                           className={cn(
-                            "flex min-h-8 items-center justify-center p-1.5",
+                            "flex min-h-[44px] items-center justify-center p-1.5",
                             active ? "bg-accent" : "bg-card"
                           )}
                         >
@@ -413,7 +413,7 @@ export function TryOutExperience() {
                         <span className="text-sm font-medium capitalize">
                           {d.value}
                         </span>
-                        <span className="text-[10px] leading-tight text-muted-foreground">
+                        <span className="text-xs leading-tight text-muted-foreground">
                           {d.desc}
                         </span>
                         <span className="mt-0.5 h-1 w-full overflow-hidden rounded-full bg-border">
@@ -441,7 +441,7 @@ export function TryOutExperience() {
                         type="button"
                         onClick={() => setCount(c)}
                         className={cn(
-                          "flex-1 rounded-lg py-1.5 text-sm font-medium transition-all",
+                          "flex-1 rounded-lg py-2.5 text-sm font-medium transition-all",
                           count === c
                             ? "bg-primary text-primary-foreground shadow-sm"
                             : "text-muted-foreground hover:text-foreground"
@@ -498,7 +498,7 @@ export function TryOutExperience() {
                       type="button"
                       onClick={() => setCount(c)}
                       className={cn(
-                        "flex-1 rounded-lg py-1.5 text-sm font-medium transition-all",
+                        "flex-1 rounded-lg py-2.5 text-sm font-medium transition-all",
                         count === c
                           ? "bg-primary text-primary-foreground shadow-sm"
                           : "text-muted-foreground hover:text-foreground"

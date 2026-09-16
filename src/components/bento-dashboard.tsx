@@ -121,7 +121,7 @@ function StatsCard() {
             </h3>
             <Link
               href="/progres"
-              className="flex items-center gap-0.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+              className="flex min-h-11 items-center gap-0.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
             >
               Riwayat
               <ArrowUpRight className="size-3" />
@@ -136,7 +136,7 @@ function StatsCard() {
                 Belum ada sesi latihan tercatat.
               </p>
               <Button
-                size="sm"
+                size="default"
                 nativeButton={false}
                 render={<Link href="/tryout" />}
               >
@@ -150,19 +150,19 @@ function StatsCard() {
                 <p className="text-2xl font-bold tabular-nums sm:text-3xl">
                   {last ? Math.round((last.score / last.total) * 100) : 0}
                 </p>
-                <p className="text-[11px] text-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                   Skor terbaru
                 </p>
               </div>
               <div>
                 <p className="text-2xl font-bold tabular-nums sm:text-3xl">{avg ?? 0}</p>
-                <p className="text-[11px] text-muted-foreground">Rata-rata</p>
+                <p className="text-xs text-muted-foreground">Rata-rata</p>
               </div>
               <div>
                 <p className="text-2xl font-bold tabular-nums sm:text-3xl">
                   {scores.length}
                 </p>
-                <p className="text-[11px] text-muted-foreground">Sesi</p>
+                <p className="text-xs text-muted-foreground">Sesi</p>
               </div>
             </div>
           )}
@@ -171,7 +171,7 @@ function StatsCard() {
         {scores && scores.length >= 2 && (
           <div className="shrink-0">
             <Sparkline scores={scores} />
-            <p className="mt-1 text-right text-[10px] text-muted-foreground">
+            <p className="mt-1 text-right text-xs text-muted-foreground">
               tren skor
             </p>
           </div>
@@ -217,7 +217,7 @@ export function BentoDashboard() {
             <p className="text-3xl font-bold tabular-nums">
               {days === null ? "…" : days}
             </p>
-            <p className="text-[11px] text-muted-foreground">hari lagi</p>
+            <p className="text-xs text-muted-foreground">hari lagi</p>
           </div>
         </BentoCard>
 

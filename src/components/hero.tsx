@@ -58,7 +58,7 @@ export function Hero() {
       >
         Latihan soal interaktif untuk{" "}
         <span className="relative inline-grid max-w-full h-7 items-center justify-items-center overflow-hidden rounded-full bg-accent align-middle px-2.5 font-medium text-foreground sm:h-8 sm:px-3">
-          <span aria-hidden className="invisible col-start-1 row-start-1 whitespace-nowrap text-[11px] sm:text-base">
+          <span aria-hidden className="invisible col-start-1 row-start-1 whitespace-nowrap text-xs sm:text-base">
             {widestSubject}
           </span>
           <AnimatePresence mode="wait" initial={false}>
@@ -68,7 +68,7 @@ export function Hero() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -20, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="col-start-1 row-start-1 whitespace-nowrap text-[11px] sm:text-base"
+              className="col-start-1 row-start-1 whitespace-nowrap text-xs sm:text-base"
             >
               {subjects[index]}
             </motion.span>

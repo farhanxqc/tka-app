@@ -334,11 +334,12 @@ export function PdfWorkspace() {
                   Kuis Pemahaman
                 </h2>
                 <QuizRunner
-                  questions={questions}
-                  topic={fileName}
-                  source="pdf"
-                  onExit={reset}
-                />
+          questions={questions}
+          topic={fileName}
+          source="pdf"
+          timeLimitSec={questions.length * 90}
+          onExit={reset}
+        />
               </div>
             ) : (
               <div className="flex h-full flex-col items-center justify-center gap-4 text-center">

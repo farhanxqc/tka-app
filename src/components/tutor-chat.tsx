@@ -6,7 +6,7 @@ import { Bot, CircleStop, Loader2, SendHorizontal } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { postJSON } from "@/lib/fetch-json";
+import { postStream } from "@/lib/fetch-json";
 import { cn } from "cn";
 import type { ChatMessage } from "@/lib/types";
 
@@ -21,6 +21,7 @@ export function TutorChat() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [streamText, setStreamText] = useState("");
   const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export function TutorChat() {
     if (listRef.current) {
       listRef.current.scrollTop = listRef.current.scrollHeight;
     }
-  }, [messages, open]);
+  }, [messages, open, streamText]);
 
   async function send(text: string) {
     const content = text.trim();
@@ -43,23 +44,30 @@ export function TutorChat() {
     setMessages(next);
     setInput("");
     setLoading(true);
+    setStreamText("");
 
     try {
-      const data = await postJSON<{ reply?: string; error?: string }>(
-        "/api/tutor",
-        { messages: next }
-      );
+      let reply = "";
+      await postStream("/api/tutor", { messages: next }, (chunk) => {
+        reply += chunk;
+        setStreamText(reply);
+      });
+      setStreamText("");
+      setMessages([
+        ...next,
+        { role: "model", content: reply || "(tidak ada jawaban)." },
+      ]);
+    } catch (error) {
+      setStreamText("");
       setMessages([
         ...next,
         {
           role: "model",
-          content: data.reply ?? data.error ?? "Terjadi kesalahan.",
+          content:
+            error instanceof Error
+              ? error.message
+              : "Gagal terhubung ke server. Coba lagi.",
         },
-      ]);
-    } catch {
-      setMessages([
-        ...next,
-        { role: "model", content: "Gagal terhubung ke server. Coba lagi." },
       ]);
     } finally {
       setLoading(false);
@@ -127,7 +135,14 @@ export function TutorChat() {
                 </div>
               ))}
 
-              {loading && (
+              {loading && streamText && (
+                <div className="max-w-[85%] whitespace-pre-wrap rounded-xl bg-accent px-3 py-2 text-sm">
+                  {streamText}
+                  <span className="ml-0.5 inline-block h-3.5 w-1.5 animate-pulse rounded-sm bg-foreground/60 align-text-bottom" />
+                </div>
+              )}
+
+              {loading && !streamText && (
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Loader2 className="size-4 animate-spin" />
                   Tutor sedang berpikir…

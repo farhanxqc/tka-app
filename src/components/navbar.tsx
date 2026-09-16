@@ -12,6 +12,7 @@ const links = [
   { href: "/tryout", label: "Try Out" },
   { href: "/belajar", label: "Belajar" },
   { href: "/pdf", label: "PDF to AI" },
+  { href: "/progres", label: "Progres" },
 ] as const;
 
 export function Navbar() {

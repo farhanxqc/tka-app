@@ -114,10 +114,19 @@ function StatsCard() {
       <CardGlow />
       <div className="flex items-center justify-between gap-4">
         <div className="min-w-0 space-y-3">
-          <h3 className="flex items-center gap-2 text-sm font-semibold">
-            <ChartLine className="size-4 text-primary" />
-            Performa Belajar
-          </h3>
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="flex items-center gap-2 text-sm font-semibold">
+              <ChartLine className="size-4 text-primary" />
+              Performa Belajar
+            </h3>
+            <Link
+              href="/progres"
+              className="flex items-center gap-0.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Riwayat
+              <ArrowUpRight className="size-3" />
+            </Link>
+          </div>
 
           {scores === null ? (
             <p className="text-sm text-muted-foreground">Memuat…</p>

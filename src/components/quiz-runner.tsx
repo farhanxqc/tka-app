@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ChevronLeft, ChevronRight, Flag } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, Flag } from "lucide-react";
 import { ResultDialog } from "@/components/result-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,12 +19,14 @@ export function QuizRunner({
   source,
   onExit,
   onRetry,
+  timeLimitSec,
 }: {
   questions: QuizQuestion[];
   topic: string;
   source: "tryout" | "pdf";
   onExit?: () => void;
   onRetry?: () => void;
+  timeLimitSec?: number;
 }) {
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(
@@ -32,6 +34,7 @@ export function QuizRunner({
   );
   const [resultOpen, setResultOpen] = useState(false);
   const [score, setScore] = useState(0);
+  const [remaining, setRemaining] = useState(timeLimitSec ?? 0);
 
   const question = questions[index];
   const answeredCount = answers.filter((a) => a !== null).length;
@@ -94,10 +97,31 @@ export function QuizRunner({
     setResultOpen(true);
   }
 
+  const finishRef = useRef(finish);
+  useEffect(() => {
+    finishRef.current = finish;
+  });
+
+  useEffect(() => {
+    if (!timeLimitSec || resultOpen) return;
+    const id = setInterval(
+      () => setRemaining((r) => Math.max(0, r - 1)),
+      1000
+    );
+    return () => clearInterval(id);
+  }, [timeLimitSec, resultOpen]);
+
+  useEffect(() => {
+    if (timeLimitSec && remaining === 0 && !resultOpen) {
+      finishRef.current();
+    }
+  }, [remaining, resultOpen, timeLimitSec]);
+
   function retry() {
     setAnswers(Array(questions.length).fill(null));
     setIndex(0);
     setResultOpen(false);
+    setRemaining(timeLimitSec ?? 0);
     onRetry?.();
   }
 
@@ -110,9 +134,24 @@ export function QuizRunner({
           </Badge>
           <Badge variant="outline">{topic}</Badge>
         </div>
-        <span className="shrink-0 text-xs text-muted-foreground">
-          Terjawab {answeredCount}/{questions.length}
-        </span>
+        <div className="flex items-center gap-3">
+          {timeLimitSec ? (
+            <Badge
+              variant="outline"
+              className={cn(
+                "tabular-nums",
+                remaining <= 60 &&
+                  "border-destructive/60 bg-destructive/10 text-destructive"
+              )}
+            >
+              <Clock className="size-3.5" />
+              {Math.floor(remaining / 60)}:{String(remaining % 60).padStart(2, "0")}
+            </Badge>
+          ) : null}
+          <span className="shrink-0 text-xs text-muted-foreground">
+            Terjawab {answeredCount}/{questions.length}
+          </span>
+        </div>
       </div>
 
       <Progress value={((index + 1) / questions.length) * 100} />

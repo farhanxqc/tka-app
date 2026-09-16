@@ -27,3 +27,8 @@ export function addScore(
   window.localStorage.setItem(KEY, JSON.stringify(scores.slice(0, 100)));
   return record;
 }
+
+export function clearScores(): void {
+  if (typeof window === "undefined") return;
+  window.localStorage.removeItem(KEY);
+}

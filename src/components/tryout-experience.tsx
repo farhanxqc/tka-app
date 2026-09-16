@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
   BookOpenCheck,
@@ -27,8 +27,9 @@ import { QuizRunner } from "@/components/quiz-runner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { postJSON } from "@/lib/fetch-json";
+import { getScores } from "@/lib/storage";
 import { cn } from "cn";
-import type { Difficulty, QuizQuestion } from "@/lib/types";
+import type { Difficulty, QuizQuestion, ScoreRecord } from "@/lib/types";
 
 const SUBJECTS = [
   {
@@ -116,6 +117,28 @@ export function TryOutExperience() {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<QuizQuestion[] | null>(null);
   const [sessionTopic, setSessionTopic] = useState("");
+  const [scores, setScores] = useState<ScoreRecord[]>([]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setScores(getScores()), 0);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const weekStart = new Date();
+  weekStart.setDate(weekStart.getDate() - 7);
+  const weekSessions = scores.filter(
+    (s) => new Date(s.date) >= weekStart
+  ).length;
+  const last = scores[0];
+  const avg =
+    scores.length > 0
+      ? Math.round(
+          scores.reduce((acc, s) => acc + s.score / s.total, 0) /
+            scores.length *
+            100
+        )
+      : null;
+  const sparkline = avg === null ? [] : scores.slice(0, 6).reverse();
 
   async function generate() {
     if (mode === "custom" && !customPrompt.trim()) {
@@ -166,6 +189,7 @@ export function TryOutExperience() {
         questions={questions}
         topic={sessionTopic}
         source="tryout"
+        timeLimitSec={questions.length * 90}
         onExit={() => setQuestions(null)}
       />
     );
@@ -200,14 +224,16 @@ export function TryOutExperience() {
           >
             <div className="mb-1.5 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
               <StatusDot tone="amber" />
-              Sesi minggu ini
+              Sesi 7 hari terakhir
             </div>
             <p className="flex items-center gap-1.5 text-2xl font-bold">
               <Flame className="size-5 text-amber-500" />
-              3
+              {weekSessions}
             </p>
-            <p className="mt-1 text-[10px] text-muted-foreground">
-              terakhir selesai — skor 87
+            <p className="mt-1 line-clamp-2 text-[10px] text-muted-foreground">
+              {last
+                ? `terakhir selesai — skor ${Math.round((last.score / last.total) * 100)}`
+                : "belum ada sesi — mulai sekarang"}
             </p>
           </FloatingCard>
 
@@ -216,19 +242,29 @@ export function TryOutExperience() {
               <span>Akurasi rata-rata</span>
               <TrendingUp className="size-3.5 text-emerald-500" />
             </div>
-            <p className="text-2xl font-bold">72%</p>
-            <div className="mt-1.5 flex items-end justify-between gap-1">
-              {[55, 62, 58, 70, 66, 72].map((v, i) => (
-                <div
-                  key={i}
-                  style={{ height: `${v}%` }}
-                  className="h-7 flex-1 rounded-sm bg-primary/70"
-                />
-              ))}
-            </div>
-            <p className="mt-1 text-[10px] text-muted-foreground">
-              naik 6% sejak minggu lalu
-            </p>
+            {avg === null ? (
+              <p className="text-sm text-muted-foreground">
+                Belum ada data skor
+              </p>
+            ) : (
+              <>
+                <p className="text-2xl font-bold">{avg}%</p>
+                <div className="mt-1.5 flex items-end justify-between gap-1">
+                  {sparkline.map((s, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        height: `${Math.max(Math.round((s.score / s.total) * 100), 8)}%`,
+                      }}
+                      className="h-7 flex-1 rounded-sm bg-primary/70"
+                    />
+                  ))}
+                </div>
+                <p className="mt-1 text-[10px] text-muted-foreground">
+                  tren {sparkline.length} sesi terakhir
+                </p>
+              </>
+            )}
           </FloatingCard>
 
           <FloatingCard

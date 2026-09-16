@@ -19,6 +19,21 @@ export async function generateText(prompt: string): Promise<string> {
   return res.text ?? "";
 }
 
+export async function streamText(
+  prompt: string,
+  onChunk: (text: string) => void
+): Promise<void> {
+  const ai = getClient();
+  const res = await ai.models.generateContentStream({
+    model: MODEL,
+    contents: prompt,
+  });
+  for await (const chunk of res) {
+    const text = chunk.text ?? "";
+    if (text) onChunk(text);
+  }
+}
+
 export async function generateJSON<T>(prompt: string): Promise<T> {
   const ai = getClient();
   const res = await ai.models.generateContent({

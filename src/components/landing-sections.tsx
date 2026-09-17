@@ -756,7 +756,7 @@ const footerLinks = [
 const socials = [
   {
     label: "Instagram",
-    href: "https://instagram.com",
+    href: "https://instagram.com/farhanxqc",
     path: "M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.1.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.1-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.1-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.1 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2m0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.5.2-1.8.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.3-.3.7-.3 1.8-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.5.3 1.8.2.5.4.8.7 1.1.3.3.6.5 1.1.7.3.1.7.3 1.8.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.5-.2 1.8-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.3.3-.7.3-1.8.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.5-.3-1.8-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.5-1.1-.7-.3-.1-.7-.3-1.8-.3C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-3.1a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z",
   },
   {
@@ -784,10 +784,10 @@ export function LandingFooter() {
           <div>
             <div className="flex items-center gap-3.5">
               <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/60 text-base font-bold text-primary-foreground">
-                FK
+                RF
               </span>
               <div>
-                <p className="font-semibold">Farhan Kurnia</p>
+                <p className="font-semibold">Raihan Farhani</p>
                 <p className="text-sm text-muted-foreground">
                   AI Developer &amp; Creative Technologist
                 </p>
@@ -827,18 +827,18 @@ export function LandingFooter() {
             </div>
             <div className="flex flex-col gap-2 text-sm text-muted-foreground">
               <a
-                href="mailto:halo@farhantka.app"
+                href="mailto:m.raihan.farhani@gmail.com"
                 className="flex items-center gap-2 transition-colors hover:text-foreground sm:justify-end"
               >
                 <Mail className="size-4" />
-                halo@farhantka.app
+                m.raihan.farhani@gmail.com
               </a>
               <a
-                href="tel:+6281234567890"
+                href="tel:+6289678546641"
                 className="flex items-center gap-2 transition-colors hover:text-foreground sm:justify-end"
               >
                 <Phone className="size-4" />
-                +62 812-3456-7890
+                0896-7854-6641
               </a>
             </div>
           </div>
@@ -847,10 +847,6 @@ export function LandingFooter() {
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-border/40 pt-6 sm:flex-row">
           <p className="text-xs text-muted-foreground">
             © 2026 farhantka.vercel.app. Seluruh hak cipta dilindungi.
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Dibuat dengan <span className="text-primary">♥</span> di Indonesia
-            🇮🇩
           </p>
         </div>
       </div>

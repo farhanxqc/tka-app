@@ -34,16 +34,16 @@ export function Navbar() {
     <header className="sticky top-0 z-40 w-full">
       <div
         className={cn(
-          "grid grid-cols-[auto_1fr_auto] items-center transition-[margin,border-radius,background-color,box-shadow,border-color,height] duration-300 ease-out",
+          "grid grid-cols-[1fr_auto_1fr] items-center transition-[margin,border-radius,background-color,box-shadow,border-color,height] duration-300 ease-out",
           scrolled
-            ? "mx-3 mt-2 h-12 rounded-full bg-background/70 px-2 shadow-lg shadow-foreground/5 ring-1 ring-border/50 backdrop-blur-xl sm:mx-[10%] xl:mx-auto xl:max-w-6xl"
-            : "mx-0 h-16 bg-transparent sm:h-18"
+            ? "mx-3 mt-2 h-11 rounded-full bg-background/70 px-3 shadow-lg shadow-foreground/5 ring-1 ring-border/50 backdrop-blur-xl sm:mx-[10%] xl:mx-auto xl:max-w-6xl"
+            : "mx-0 h-14 bg-transparent"
         )}
       >
         <Link
           href="/"
           onClick={closeNav}
-          className="flex shrink-0 items-center gap-2.5 pl-3 sm:pl-4"
+          className="flex h-full shrink-0 items-center gap-2.5 justify-self-start pl-1"
         >
           <span
             className={cn(
@@ -80,7 +80,7 @@ export function Navbar() {
           </div>
         </nav>
 
-        <div className="flex items-center gap-1 pr-2 sm:pr-1">
+        <div className="flex items-center gap-1 justify-self-end pr-1">
           <ThemeToggle />
           <button
             type="button"

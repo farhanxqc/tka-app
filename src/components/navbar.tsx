@@ -32,12 +32,13 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 flex w-full justify-center">
-      <div
+      <nav
+        aria-label="Navigasi utama"
         className={cn(
-          "relative flex items-center gap-3 transition-[width,border-radius,padding,height,margin,background-color,box-shadow] duration-300 ease-out",
+          "relative mx-auto flex w-fit items-center px-1 transition-[height,padding,background-color,box-shadow,border-radius,border-color,margin] duration-300 ease-out",
           scrolled
-            ? "mx-auto mt-1 h-12 w-fit min-w-0 max-w-[97vw] rounded-full bg-background/70 pr-2 pl-3 shadow-lg shadow-foreground/5 ring-1 ring-border/50 backdrop-blur-xl"
-            : "h-16 w-full bg-transparent sm:h-18"
+            ? "mt-2 h-12 rounded-full bg-background/70 shadow-lg shadow-foreground/5 ring-1 ring-border/50 backdrop-blur-xl"
+            : "h-16 bg-transparent sm:h-18"
         )}
       >
         <Link
@@ -63,7 +64,10 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-1 sm:flex">
+        <nav
+          aria-label="Navigasi halaman"
+          className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-0.5 sm:flex"
+        >
           {links.map((link) => (
             <Link
               key={link.href}
@@ -85,12 +89,12 @@ export function Navbar() {
             aria-label={navOpen ? "Tutup menu" : "Buka menu"}
             aria-expanded={navOpen}
             onClick={() => setNavOpen(!navOpen)}
-            className="flex size-10 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground sm:hidden"
+            className="flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground sm:hidden"
           >
             {navOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
         </div>
-      </div>
+      </nav>
 
       {navOpen && (
         <div className="absolute inset-x-3 top-full mt-2 rounded-2xl border border-border/60 bg-background/95 p-2 shadow-xl shadow-foreground/10 backdrop-blur-xl sm:hidden">

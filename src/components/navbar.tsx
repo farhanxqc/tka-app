@@ -31,21 +31,15 @@ export function Navbar() {
   const closeNav = () => setNavOpen(false);
 
   return (
-    <header className="sticky top-0 z-40 w-full">
+    <header className="sticky top-0 z-40 flex w-full justify-center">
       <div
         className={cn(
-          "w-full border-b transition-all duration-300",
+          "flex items-center gap-3 transition-all duration-300",
           scrolled
-            ? "border-border/40 bg-background/70 shadow-sm shadow-foreground/5 backdrop-blur-xl"
-            : "border-transparent bg-transparent"
+            ? "mx-auto mt-0 w-fit max-w-[97vw] rounded-full bg-background/70 py-2 pr-2.5 pl-3 shadow-lg shadow-foreground/5 ring-1 ring-border/50 backdrop-blur-xl"
+            : "w-full h-16 bg-transparent px-0 sm:h-18"
         )}
       >
-        <div
-          className={cn(
-            "mx-auto flex w-full max-w-6xl items-center gap-3 px-4 transition-all duration-300",
-            scrolled ? "h-14" : "h-16 sm:h-18"
-          )}
-        >
           <Link
             href="/"
             onClick={closeNav}
@@ -100,7 +94,6 @@ export function Navbar() {
               {navOpen ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
           </div>
-        </div>
       </div>
 
       {navOpen && (

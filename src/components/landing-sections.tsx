@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import {
   ArrowRight,
   BookOpenCheck,
+  Bookmark,
   Check,
   ChevronDown,
   FileText,
@@ -13,8 +14,10 @@ import {
   Layers,
   MessageCircle,
   Sparkles,
+  Star,
   Timer,
   TrendingUp,
+  Users,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -241,6 +244,232 @@ export function HowItWorks() {
             </motion.div>
           );
         })}
+      </div>
+    </section>
+  );
+}
+
+const universities = [
+  "Universitas Indonesia",
+  "ITB",
+  "UGM",
+  "UNPAD",
+  "Universitas Brawijaya",
+  "ITS",
+  "Telkom University",
+  "UIN Jakarta",
+  "Universitas Airlangga",
+  "Universitas Diponegoro",
+];
+
+export function TrustBar() {
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-10">
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.5 }}
+        className="text-center text-sm font-medium text-muted-foreground"
+      >
+        Dipercaya oleh pelajar dari
+      </motion.p>
+      <div className="mask-fade mt-6 flex gap-3 overflow-hidden">
+        {[0, 1].map((dup) => (
+          <div
+            key={dup}
+            aria-hidden={dup === 1}
+            className="marquee flex shrink-0 gap-3"
+          >
+            {universities.map((u) => (
+              <span
+                key={`${dup}-${u}`}
+                className="flex h-11 shrink-0 items-center whitespace-nowrap rounded-full border border-border/60 bg-card px-5 text-sm font-semibold text-muted-foreground"
+              >
+                {u}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+const stats = [
+  {
+    value: "950rb+",
+    label: "Pengguna aktif",
+    icon: Users,
+    tone: "text-emerald-600 bg-emerald-500/10 dark:text-emerald-400",
+  },
+  {
+    value: "2,4 jt+",
+    label: "Catatan dibuat",
+    icon: Bookmark,
+    tone: "text-sky-600 bg-sky-500/10 dark:text-sky-400",
+  },
+  {
+    value: "4,9/5",
+    label: "Rating pengguna",
+    icon: Star,
+    tone: "text-amber-600 bg-amber-500/10 dark:text-amber-400",
+  },
+  {
+    value: "1.200+",
+    label: "Sekolah & kampus",
+    icon: FileText,
+    tone: "text-violet-600 bg-violet-500/10 dark:text-violet-400",
+  },
+];
+
+export function StatsSection() {
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.4 }}
+        className="mx-auto max-w-2xl text-center"
+      >
+        <SectionLabel>Dipercaya ratusan ribu pelajar</SectionLabel>
+        <h2 className="font-heading text-2xl font-bold tracking-tight text-balance sm:text-3xl">
+          Mereka sudah membuktikannya
+        </h2>
+        <p className="mt-3 text-sm text-muted-foreground text-balance sm:text-base">
+          Bergabung dengan 950.000+ pelajar dan mahasiswa di seluruh Indonesia
+          yang sudah merasakan manfaat belajar yang lebih terarah.
+        </p>
+      </motion.div>
+
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {stats.map((s, i) => {
+          const Icon = s.icon;
+          return (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              className="rounded-2xl border border-border/60 bg-card p-6 text-center"
+            >
+              <span
+                className={cn(
+                  "mx-auto flex size-11 items-center justify-center rounded-xl",
+                  s.tone
+                )}
+              >
+                <Icon className="size-5" />
+              </span>
+              <p className="mt-4 text-3xl font-bold tracking-tight tabular-nums">
+                {s.value}
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
+            </motion.div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+const testimonials = [
+  {
+    name: "Rafif A.",
+    role: "Siswa SMA, Jakarta",
+    text: "Soal try out-nya selalu sesuai sama materi yang lagi saya pelajari. Pembahasannya bikin paham, bukan cuma dapat jawaban.",
+    rating: 5,
+  },
+  {
+    name: "Salsabila N.",
+    role: "Mahasiswi, Bandung",
+    text: "Upload PDF rangkuman, AI langsung bikinin soal latihannya. Hemat banget waktuku buat review sebelum ujian.",
+    rating: 5,
+  },
+  {
+    name: "Bagas P.",
+    role: "Siswa SMK, Surabaya",
+    text: "Tutor AI-nya ngejelasin step by step tanpa bikin malu. Progres juga otomatis, jadi aku tahu bagian mana yang lemah.",
+    rating: 5,
+  },
+  {
+    name: "Nadia R.",
+    role: "Siswi SMA, Yogyakarta",
+    text: "Soal, pembahasan, dan progres di satu tempat. Belajar jadi lebih santai dan terarah, nggak deh nggak tahu mau mulai dari mana.",
+    rating: 5,
+  },
+  {
+    name: "Ilham W.",
+    role: "Mahasiswa, Malang",
+    text: "Skor langsung kehitung, pembahasan jelas, tinggal fokus latihan. Anjuran banget buat yang mau serius rakit nilai.",
+    rating: 5,
+  },
+  {
+    name: "Aisyah M.",
+    role: "Siswi Madrasah, Depok",
+    text: "Dari yang gaptek soal TKA, sekarang pede ikut try out. Fitur rangkum PDF paling sering kupakai tiap ada materi baru.",
+    rating: 5,
+  },
+];
+
+function Stars({ count }: { count: number }) {
+  return (
+    <div className="flex gap-0.5">
+      {Array.from({ length: count }).map((_, i) => (
+        <Star key={i} className="size-4 fill-amber-400 text-amber-400" />
+      ))}
+    </div>
+  );
+}
+
+export function TestimonialSection() {
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.4 }}
+        className="mx-auto max-w-2xl text-center"
+      >
+        <SectionLabel>Apa kata mereka</SectionLabel>
+        <h2 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+          Dicintai pelajar dari Sabang sampai Merauke
+        </h2>
+        <p className="mt-3 text-sm text-muted-foreground text-balance sm:text-base">
+          Rating 4,9/5 dari ribuan ulasan. Ini beberapa cerita mereka.
+        </p>
+      </motion.div>
+
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {testimonials.map((t, i) => (
+          <motion.figure
+            key={t.name}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.4, delay: i * 0.07 }}
+            className="flex flex-col rounded-2xl border border-border/60 bg-card p-5"
+          >
+            <Stars count={t.rating} />
+            <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+              &ldquo;{t.text}&rdquo;
+            </blockquote>
+            <figcaption className="mt-4 flex items-center gap-3 border-t border-border/40 pt-4">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+                {t.name.charAt(0)}
+              </span>
+              <span>
+                <span className="block text-sm font-semibold">{t.name}</span>
+                <span className="block text-xs text-muted-foreground">
+                  {t.role}
+                </span>
+              </span>
+            </figcaption>
+          </motion.figure>
+        ))}
       </div>
     </section>
   );

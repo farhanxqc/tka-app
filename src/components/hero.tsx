@@ -3,9 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { FileUp, ListChecks, Rocket, TrendingUp, WandSparkles } from "lucide-react";
+import { FileUp, Rocket } from "lucide-react";
 
-import { FloatingCard, StatusDot } from "@/components/floating-card";
 import { Button } from "@/components/ui/button";
 
 const subjects = [
@@ -16,10 +15,9 @@ const subjects = [
   "Produk Kreatif & Kewirausahaan",
 ];
 
-const widestSubject = subjects.reduce((a, b) => (a.length >= b.length ? a : b));
-
 export function Hero() {
   const [index, setIndex] = useState(0);
+  const [line, setLine] = useState(1);
 
   useEffect(() => {
     const timer = setInterval(
@@ -29,52 +27,41 @@ export function Hero() {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => setLine((l) => (l >= 5 ? 1 : l + 1)), 900);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative mx-auto flex min-h-[calc(100dvh-5.5rem)] w-full max-w-6xl flex-col items-center justify-center gap-5 px-4 pt-16 pb-10 text-center sm:gap-6">
+    <section className="relative mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-6 px-4 pt-16 pb-20 text-center">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center gap-2 rounded-full border border-border/60 bg-card px-4 py-1.5 text-xs font-medium text-muted-foreground shadow-sm"
+        className="flex items-center gap-2 rounded-full border border-border/60 bg-card px-4 py-1.5 text-xs font-medium text-foreground shadow-sm"
       >
-        <StatusDot tone="emerald" />
-        Didukung Gemini AI — soal & rangkuman tanpa batas
+        <span className="size-1.5 rounded-full bg-emerald-500" />
+        Try out TKA & rangkuman PDF, ditenagai Gemini AI
       </motion.div>
 
       <motion.h1
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="font-heading w-full max-w-4xl text-4xl leading-[1.1] font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl"
+        className="w-full max-w-3xl text-4xl leading-[1.1] font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl"
       >
-        Persiapan TKA terarah, ditenagai AI.
+        Persiapan TKA terarah,{" "}
+        <span className="text-primary">ditenagai AI</span>
       </motion.h1>
 
       <motion.p
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-        className="max-w-2xl text-sm text-muted-foreground text-balance sm:text-lg"
+        className="max-w-xl text-sm text-muted-foreground text-balance sm:text-base"
       >
-        Latihan soal interaktif untuk{" "}
-        <span className="relative inline-grid max-w-full h-7 items-center justify-items-center overflow-hidden rounded-full bg-accent align-middle px-2.5 font-medium text-foreground sm:h-8 sm:px-3">
-          <span aria-hidden className="invisible col-start-1 row-start-1 whitespace-nowrap text-xs sm:text-base">
-            {widestSubject}
-          </span>
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.span
-              key={subjects[index]}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="col-start-1 row-start-1 whitespace-nowrap text-xs sm:text-base"
-            >
-              {subjects[index]}
-            </motion.span>
-          </AnimatePresence>
-        </span>{" "}
-        plus rangkuman instan dari dokumen PDF materimu.
+        Soal, pembahasan, dan rangkuman dibuat langsung dari materimu — tanpa
+        limit.
       </motion.p>
 
       <motion.div
@@ -85,7 +72,7 @@ export function Hero() {
       >
         <Button size="lg" nativeButton={false} render={<Link href="/tryout" />}>
           <Rocket />
-          Mulai Try Out TKA
+          Mulai Try Out
         </Button>
         <Button
           size="lg"
@@ -98,77 +85,67 @@ export function Hero() {
         </Button>
       </motion.div>
 
-<motion.div
+      <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.45, ease: "easeOut" }}
-        className="relative mt-4 hidden h-60 w-full max-w-4xl lg:block"
+        transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
+        className="mt-6 w-full max-w-2xl"
       >
-        <FloatingCard
-          className="absolute top-0 left-10 z-10 w-60 -rotate-6 p-3"
-          duration={5}
-        >
-          <div className="mb-1.5 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-            <StatusDot />
-            Soal #3 — Matematika
-          </div>
-          <p className="text-sm font-medium">
-            Hasil dari &int;&#8321;&#8317;² x&#8318; dx adalah…
-          </p>
-          <div className="mt-2 space-y-1">
-            <div className="rounded-lg bg-accent px-2 py-1 text-xs">A. 2&#8321; - 1</div>
-            <div className="rounded-lg bg-primary px-2 py-1 text-xs text-primary-foreground">
-              B. 2&#8321; - 1&#8319;&#8305; → benar
-            </div>
-          </div>
-        </FloatingCard>
-
-        <FloatingCard
-          className="absolute top-4 right-10 z-10 w-48 rotate-6 p-3"
-          duration={6}
-          delay={0.5}
-        >
-          <div className="mb-1.5 flex items-center justify-between text-xs font-medium text-muted-foreground">
-            <span>Skor terbaru</span>
-            <TrendingUp className="size-3.5 text-emerald-500" />
-          </div>
-          <p className="text-2xl font-bold">87</p>
-          <div className="mt-1.5 flex h-8 items-end gap-1">
-            {[45, 60, 52, 70, 64, 80, 87].map((v, i) => (
-              <div
-                key={i}
-                style={{ height: `${v}%` }}
-                className="flex-1 rounded-sm bg-primary/70"
-              />
-            ))}
-          </div>
-        </FloatingCard>
-
-        <FloatingCard
-          className="absolute top-24 left-1/2 z-20 w-56 -translate-x-1/2 p-3"
-          duration={4.5}
-          delay={1}
-        >
-          <div className="mb-1.5 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-            <ListChecks className="size-3.5 text-primary" />
-            Rangkuman PDF — 12 poin
-          </div>
-          <div className="space-y-1.5">
-            <div className="flex items-start gap-1.5 text-xs">
-              <StatusDot />
-              <span>Integral tentu = luas daerah</span>
-            </div>
-            <div className="flex items-start gap-1.5 text-xs">
-              <StatusDot />
-              <span>Substitusi untuk fungsi komposit</span>
-            </div>
-            <div className="flex items-start gap-1.5 text-xs">
-              <WandSparkles className="mt-0.5 size-3 shrink-0 text-amber-500" />
-              <span>Kuis 10 soal siap</span>
-            </div>
-          </div>
-        </FloatingCard>
+        <TerminalWindow line={line} subject={subjects[index]} />
       </motion.div>
     </section>
+  );
+}
+
+function TerminalWindow({
+  line,
+  subject,
+}: {
+  line: number;
+  subject: string;
+}) {
+  const lines = [
+    <span key={1}>
+      <span className="text-emerald-500">➤</span>{" "}
+      <span className="text-foreground">farhan-agent</span>{" "}
+      <span className="text-muted-foreground">--tryout</span>{" "}
+      <span className="text-sky-500">&quot;{subject}&quot;</span>{" "}
+      <span className="text-amber-500">5</span>
+    </span>,
+    <span key={2} className="text-muted-foreground">
+      ⬡ men-generate soal sesuai mapel…
+    </span>,
+    <span key={3} className="text-foreground/80">✔ Soal 1/5 — selesai</span>,
+    <span key={4} className="text-foreground/80">✔ Soal 3/5 — selesai</span>,
+    <span key={5} className="text-emerald-500">
+      ✓ 5 soal + pembahasan siap dipelajari
+    </span>,
+  ];
+
+  return (
+    <div className="overflow-hidden rounded-xl border border-border/60 bg-[#0a0f1e] text-left shadow-2xl shadow-foreground/10">
+      <div className="flex items-center gap-2 border-b border-white/10 bg-white/5 px-4 py-3">
+        <span className="size-3 rounded-full bg-[#ff5f57]" />
+        <span className="size-3 rounded-full bg-[#febc2e]" />
+        <span className="size-3 rounded-full bg-[#28c840]" />
+        <span className="mx-auto text-xs text-white/40">
+          farhan-agent — tryout
+        </span>
+      </div>
+      <div className="min-h-44 p-4 text-left font-mono text-xs leading-relaxed sm:min-h-48 sm:text-sm">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={line}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0.6 }}
+            transition={{ duration: 0.2 }}
+          >
+            {lines[line - 1]}
+          </motion.div>
+        </AnimatePresence>
+        <span className="ml-1 inline-block size-2.5 translate-y-0.5 animate-pulse bg-emerald-500" />
+      </div>
+    </div>
   );
 }

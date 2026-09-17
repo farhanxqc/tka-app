@@ -54,7 +54,7 @@ export function ProgressView() {
         transition={{ duration: 0.5 }}
         className="space-y-3 text-center"
       >
-        <h1 className="text-3xl font-bold tracking-tight">Progres Belajar</h1>
+        <h1 className="font-heading text-3xl font-bold tracking-tight">Progres Belajar</h1>
         <p className="mx-auto max-w-md text-balance text-muted-foreground">
           Rekap skor simulasi tersimpan di perangkat ini.
         </p>

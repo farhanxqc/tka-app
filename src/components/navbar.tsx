@@ -43,7 +43,7 @@ export function Navbar() {
         <Link
           href="/"
           onClick={closeNav}
-          className="flex h-full shrink-0 items-center justify-self-start pl-1"
+          className="flex h-full shrink-0 items-center justify-self-start pl-4"
         >
           <span
             className={cn(

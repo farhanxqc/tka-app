@@ -12,7 +12,9 @@ import {
   FileText,
   Gauge,
   Layers,
+  Mail,
   MessageCircle,
+  Phone,
   Sparkles,
   Star,
   Timer,
@@ -751,30 +753,99 @@ const footerLinks = [
   { label: "Progres", href: "/progres" },
 ];
 
+const socials = [
+  {
+    label: "Instagram",
+    href: "https://instagram.com",
+    path: "M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.1.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.1-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.1-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.1 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2m0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.5.2-1.8.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.3-.3.7-.3 1.8-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.5.3 1.8.2.5.4.8.7 1.1.3.3.6.5 1.1.7.3.1.7.3 1.8.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.5-.2 1.8-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.3.3-.7.3-1.8.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.5-.3-1.8-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.5-1.1-.7-.3-.1-.7-.3-1.8-.3C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-3.1a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z",
+  },
+  {
+    label: "YouTube",
+    href: "https://youtube.com",
+    path: "M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.5v-7l6.3 3.5-6.3 3.5z",
+  },
+  {
+    label: "X",
+    href: "https://x.com",
+    path: "M18.9 2H22l-6.8 7.8L23.3 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L2.7 2h6.5l4.4 5.9L18.9 2zm-1.1 18.1h1.7L7.4 3.8H5.5l12.3 16.3z",
+  },
+];
+
 export function LandingFooter() {
   return (
     <footer className="border-t border-border/60 bg-background/50">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-10 sm:flex-row sm:justify-between">
-        <div className="flex items-center gap-2.5 font-semibold">
-          <span className="flex size-8 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/60 text-primary-foreground">
-            <Sparkles className="size-4" />
-          </span>
-          Farhan Agent
+      <div className="mx-auto max-w-6xl px-4 py-12">
+        <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex flex-col items-start gap-4">
+            <div className="flex items-center gap-2.5 font-semibold">
+              <span className="flex size-8 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/60 text-primary-foreground">
+                <Sparkles className="size-4" />
+              </span>
+              farhantka.app
+            </div>
+            <p className="max-w-xs text-sm text-muted-foreground">
+              Belajar TKA lebih terarah bersama AI.
+            </p>
+            <div className="flex gap-2">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="flex size-9 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="size-4"
+                    aria-hidden
+                  >
+                    <path d={s.path} />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-6 sm:flex-row sm:gap-16">
+            <nav className="flex flex-wrap gap-x-6 gap-y-2">
+              {footerLinks.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+              <a
+                href="mailto:halo@farhantka.app"
+                className="flex items-center gap-2 transition-colors hover:text-foreground"
+              >
+                <Mail className="size-4" />
+                halo@farhantka.app
+              </a>
+              <a
+                href="tel:+6281234567890"
+                className="flex items-center gap-2 transition-colors hover:text-foreground"
+              >
+                <Phone className="size-4" />
+                +62 812-3456-7890
+              </a>
+            </div>
+          </div>
         </div>
-        <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-          {footerLinks.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-        <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Farhan Agent.
-        </p>
+
+        <div className="mt-10 border-t border-border/40 pt-6 text-center">
+          <p className="text-xs text-muted-foreground">
+            © 2026 farhantka.vercel.app. Seluruh hak cipta dilindungi.
+          </p>
+        </div>
       </div>
     </footer>
   );

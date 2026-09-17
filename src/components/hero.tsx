@@ -9,7 +9,6 @@ import {
   Lock,
   Plus,
   RefreshCw,
-  Rocket,
   RotateCcw,
   ShieldCheck,
   Share,

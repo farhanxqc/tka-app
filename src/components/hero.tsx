@@ -45,7 +45,7 @@ export function Hero() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="text-3xl font-bold tracking-tight text-balance sm:text-5xl"
+        className="font-heading w-full max-w-4xl text-4xl leading-[1.1] font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl"
       >
         Persiapan TKA terarah, ditenagai AI.
       </motion.h1>

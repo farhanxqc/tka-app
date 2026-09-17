@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
@@ -775,9 +776,13 @@ export function LandingFooter() {
         <div className="grid gap-10 sm:grid-cols-2 sm:items-start">
           <div>
             <div className="flex items-center gap-3.5">
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/60 text-base font-bold text-primary-foreground">
-                RF
-              </span>
+              <Image
+                src="/kevin.jpg"
+                alt="Foto Raihan Farhani"
+                width={44}
+                height={44}
+                className="size-11 shrink-0 rounded-full border border-border/60 object-cover"
+              />
               <div>
                 <p className="font-semibold">Raihan Farhani</p>
                 <p className="text-sm text-muted-foreground">

@@ -36,7 +36,7 @@ export function Navbar() {
         className={cn(
           "grid grid-cols-[1fr_auto_1fr] items-center transition-[margin,border-radius,background-color,box-shadow,border-color,height] duration-300 ease-out",
           scrolled
-            ? "mx-3 mt-2 h-11 rounded-full bg-background/70 px-3 shadow-lg shadow-foreground/5 ring-1 ring-border/50 backdrop-blur-xl sm:mx-[12%] xl:mx-auto xl:max-w-4xl"
+            ? "mx-3 mt-3 h-12 rounded-full bg-background/70 px-3 shadow-lg shadow-foreground/5 ring-1 ring-border/50 backdrop-blur-xl sm:mx-[12%] xl:mx-auto xl:max-w-4xl"
             : "mx-0 h-14 bg-transparent"
         )}
       >

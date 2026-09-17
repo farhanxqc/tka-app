@@ -14,6 +14,7 @@ import {
   MessageCircle,
   Sparkles,
   Timer,
+  TrendingUp,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";

@@ -53,7 +53,15 @@ export function Navbar() {
   const [navOpen, setNavOpen] = useState(false);
   const [photo, setPhoto] = useState<string | null>(null);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     void Promise.resolve(localStorage.getItem(PROFILE_KEY)).then(setPhoto);
@@ -77,14 +85,23 @@ export function Navbar() {
 
   return (
     <div className="pointer-events-none sticky top-[calc(1rem+env(safe-area-inset-top))] z-40 px-3 sm:px-4">
-      <nav className="pointer-events-auto relative mx-auto flex w-full items-center gap-2 rounded-2xl border border-border/60 bg-background/80 py-2 pr-2 pl-3 shadow-lg shadow-foreground/5 backdrop-blur-xl sm:w-fit sm:rounded-full sm:pl-4">
+      <nav
+        className={`pointer-events-auto relative mx-auto flex w-full items-center gap-2 rounded-2xl border border-border/60 bg-background/80 shadow-lg shadow-foreground/5 backdrop-blur-xl transition-all duration-300 sm:w-fit ${
+          scrolled
+            ? "py-1.5 pr-2 pl-2.5 sm:rounded-xl"
+            : "py-2 pr-2 pl-3 sm:rounded-full sm:pl-4"
+        }`}
+      >
         <div className="relative shrink-0">
           <button
             type="button"
             aria-label="Foto profil"
             aria-expanded={profileOpen}
             onClick={() => setProfileOpen(!profileOpen)}
-            className="flex size-11 items-center justify-center overflow-hidden rounded-full ring-1 ring-border transition-shadow hover:shadow-md"
+            className={cn(
+              "flex items-center justify-center overflow-hidden rounded-full ring-1 ring-border transition-all duration-300 hover:shadow-md",
+              scrolled ? "size-9" : "size-11"
+            )}
           >
             {photo ? (
               // eslint-disable-next-line @next/next/no-img-element
@@ -140,10 +157,17 @@ export function Navbar() {
 
         <Link
           href="/"
-          className="-ml-1 flex shrink-0 items-center pr-1 font-semibold sm:pr-2"
+          className="-ml-1 flex shrink-0 items-center pr-1 font-semibold transition-all duration-300 sm:pr-2"
           onClick={closeNav}
         >
-          <span className="hidden sm:inline">Farhan Agent</span>
+          <span
+            className={cn(
+              "hidden transition-all duration-300 sm:inline",
+              scrolled ? "text-sm" : "text-base"
+            )}
+          >
+            Farhan Agent
+          </span>
         </Link>
 
         <div className="no-scrollbar hidden min-w-0 flex-1 items-center gap-1 overflow-x-auto overscroll-x-contain sm:flex sm:flex-none sm:rounded-full sm:bg-accent/70 sm:p-1.5">
@@ -169,7 +193,10 @@ export function Navbar() {
             aria-label={navOpen ? "Tutup menu" : "Buka menu"}
             aria-expanded={navOpen}
             onClick={() => setNavOpen(!navOpen)}
-            className="flex size-11 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground sm:hidden"
+            className={cn(
+              "flex items-center justify-center rounded-full text-muted-foreground transition-all duration-300 hover:bg-accent hover:text-foreground sm:hidden",
+              scrolled ? "size-9" : "size-11"
+            )}
           >
             {navOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>

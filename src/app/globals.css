@@ -188,6 +188,17 @@ body {
   animation: marquee 30s linear infinite;
 }
 
+.marquee-reverse {
+  animation: marquee 40s linear infinite reverse;
+}
+
+.marquee:hover,
+.marquee-reverse:hover,
+.marquee:hover .marquee,
+.marquee-reverse:hover .marquee-reverse {
+  animation-play-state: paused;
+}
+
 .mask-fade {
   mask-image: linear-gradient(
     to right,

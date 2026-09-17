@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import {
   ArrowRight,
@@ -298,30 +298,74 @@ export function TrustBar() {
 
 const stats = [
   {
-    value: "950rb+",
+    target: 950000,
+    format: (v: number) => `${Math.floor(v / 1000)}rb+`,
     label: "Pengguna aktif",
     icon: Users,
     tone: "text-emerald-600 bg-emerald-500/10 dark:text-emerald-400",
   },
   {
-    value: "2,4 jt+",
+    target: 2400000,
+    format: (v: number) => `${(v / 1000000).toFixed(1).replace(".", ",")} jt+`,
     label: "Catatan dibuat",
     icon: Bookmark,
     tone: "text-sky-600 bg-sky-500/10 dark:text-sky-400",
   },
   {
-    value: "4,9/5",
+    target: 4.9,
+    format: (v: number) => `${v.toFixed(1).replace(".", ",")}/5`,
     label: "Rating pengguna",
     icon: Star,
     tone: "text-amber-600 bg-amber-500/10 dark:text-amber-400",
   },
   {
-    value: "1.200+",
+    target: 1200,
+    format: (v: number) => `${v.toLocaleString("id-ID")}+`,
     label: "Sekolah & kampus",
     icon: FileText,
     tone: "text-violet-600 bg-violet-500/10 dark:text-violet-400",
   },
 ];
+
+function CountUp({
+  target,
+  format,
+}: {
+  target: number;
+  format: (v: number) => string;
+}) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const [val, setVal] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        const start = performance.now();
+        const dur = 1400;
+        const tick = (now: number) => {
+          const t = Math.min((now - start) / dur, 1);
+          const eased = 1 - Math.pow(1 - t, 3);
+          setVal(target * eased);
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [target]);
+
+  return (
+    <p ref={ref} className="mt-4 text-3xl font-bold tracking-tight tabular-nums">
+      {format(val)}
+    </p>
+  );
+}
 
 export function StatsSection() {
   return (
@@ -363,9 +407,7 @@ export function StatsSection() {
               >
                 <Icon className="size-5" />
               </span>
-              <p className="mt-4 text-3xl font-bold tracking-tight tabular-nums">
-                {s.value}
-              </p>
+              <CountUp target={s.target} format={s.format} />
               <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
             </motion.div>
           );
@@ -424,7 +466,32 @@ function Stars({ count }: { count: number }) {
   );
 }
 
+function TestimonialCard({ t }: { t: (typeof testimonials)[number] }) {
+  return (
+    <figure className="flex w-80 shrink-0 flex-col rounded-2xl border border-border/60 bg-card p-5 sm:w-96">
+      <Stars count={t.rating} />
+      <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+        &ldquo;{t.text}&rdquo;
+      </blockquote>
+      <figcaption className="mt-4 flex items-center gap-3 border-t border-border/40 pt-4">
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+          {t.name.charAt(0)}
+        </span>
+        <span>
+          <span className="block text-sm font-semibold">{t.name}</span>
+          <span className="block text-xs text-muted-foreground">{t.role}</span>
+        </span>
+      </figcaption>
+    </figure>
+  );
+}
+
 export function TestimonialSection() {
+  const rows = [
+    { list: testimonials.slice(0, 3), reverse: false },
+    { list: testimonials.slice(3), reverse: true },
+  ];
+
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
       <motion.div
@@ -443,32 +510,27 @@ export function TestimonialSection() {
         </p>
       </motion.div>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {testimonials.map((t, i) => (
-          <motion.figure
-            key={t.name}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.4, delay: i * 0.07 }}
-            className="flex flex-col rounded-2xl border border-border/60 bg-card p-5"
-          >
-            <Stars count={t.rating} />
-            <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-              &ldquo;{t.text}&rdquo;
-            </blockquote>
-            <figcaption className="mt-4 flex items-center gap-3 border-t border-border/40 pt-4">
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
-                {t.name.charAt(0)}
-              </span>
-              <span>
-                <span className="block text-sm font-semibold">{t.name}</span>
-                <span className="block text-xs text-muted-foreground">
-                  {t.role}
-                </span>
-              </span>
-            </figcaption>
-          </motion.figure>
+      <div className="mask-fade mt-10 flex flex-col gap-4">
+        {rows.map((row, ri) => (
+          <div key={ri} className="flex gap-4 overflow-hidden">
+            {[0, 1].map((dup) => (
+              <div
+                key={dup}
+                aria-hidden={dup === 1}
+                className={cn(
+                  "flex shrink-0 gap-4",
+                  row.reverse ? "marquee-reverse" : "marquee"
+                )}
+              >
+                {row.list.map((t, i) => (
+                  <TestimonialCard
+                    key={`${dup}-${t.name}-${i}`}
+                    t={t}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
         ))}
       </div>
     </section>

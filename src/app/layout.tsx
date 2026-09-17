@@ -29,12 +29,12 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Farhan Agent",
-    template: "%s — Farhan Agent",
+    default: "farhantka.app",
+    template: "%s — farhantka.app",
   },
   description:
     "Try out TKA dan manajemen belajar mandiri berbasis AI: generator soal, rangkuman PDF, dan tutor chat.",
-  applicationName: "Farhan Agent",
+  applicationName: "farhantka.app",
   keywords: [
     "TKA",
     "try out",
@@ -44,23 +44,23 @@ export const metadata: Metadata = {
     "rangkuman PDF",
     "soal latihan",
   ],
-  authors: [{ name: "Farhan" }],
+  authors: [{ name: "Raihan Farhani" }],
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
     type: "website",
-    siteName: "Farhan Agent",
+    siteName: "farhantka.app",
     locale: "id_ID",
     url: "/",
-    title: "Farhan Agent — Try Out TKA & Belajar mandiri berbasis AI",
+    title: "farhantka.app — Try Out TKA & Belajar mandiri berbasis AI",
     description:
       "Latihan soal interaktif untuk TKA plus rangkuman instan dari dokumen PDF materimu.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Farhan Agent — Try Out TKA & Belajar mandiri berbasis AI",
+    title: "farhantka.app — Try Out TKA & Belajar mandiri berbasis AI",
     description:
       "Latihan soal interaktif untuk TKA plus rangkuman instan dari dokumen PDF materimu.",
   },

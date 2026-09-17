@@ -46,7 +46,7 @@ export function PainPoints() {
         className="mx-auto max-w-2xl text-center"
       >
         <SectionLabel>Kamu nggak sendirian</SectionLabel>
-        <h2 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
           Banyak yang ngerasain hal yang sama. Itu wajar banget.
         </h2>
       </motion.div>
@@ -114,7 +114,7 @@ export function FeaturesGrid() {
         className="mx-auto max-w-2xl text-center"
       >
         <SectionLabel>Fitur Unggulan</SectionLabel>
-        <h2 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
           Semua yang kamu butuhkan untuk TKA
         </h2>
         <p className="mt-3 text-sm text-muted-foreground text-balance sm:text-base">
@@ -211,7 +211,7 @@ export function HowItWorks() {
         className="mx-auto max-w-2xl text-center"
       >
         <SectionLabel>Cara Kerja</SectionLabel>
-        <h2 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
           Mulai latihan dalam 3 langkah
         </h2>
       </motion.div>
@@ -290,7 +290,7 @@ export function ComparisonTable() {
         className="mx-auto max-w-2xl text-center"
       >
         <SectionLabel>Kenapa Farhan Agent?</SectionLabel>
-        <h2 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
           Bandingkan sama cara lama
         </h2>
       </motion.div>
@@ -366,7 +366,7 @@ export function FaqSection() {
         className="mx-auto max-w-2xl text-center"
       >
         <SectionLabel>FAQ</SectionLabel>
-        <h2 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
           Pertanyaan yang sering muncul
         </h2>
       </motion.div>

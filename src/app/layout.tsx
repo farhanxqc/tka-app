@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Quicksand } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 
 import { Navbar } from "@/components/navbar";
 import { SiteBackground } from "@/components/site-background";
@@ -10,18 +10,14 @@ import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
 });
 
-const quicksand = Quicksand({
-  variable: "--font-quicksand",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  display: "swap",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -72,7 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="id"
       suppressHydrationWarning
-      className={`${poppins.variable} ${quicksand.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <body className="flex min-h-dvh flex-col pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
         <ThemeProvider

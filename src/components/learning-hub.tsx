@@ -25,7 +25,7 @@ export function LearningHub() {
         transition={{ duration: 0.5 }}
         className="space-y-3 text-center"
       >
-        <h1 className="font-heading text-3xl font-bold tracking-tight">Pusat Belajar</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Pusat Belajar</h1>
         <p className="mx-auto max-w-md text-balance text-muted-foreground">
           Koleksi video materi TKA pilihan dari kreator edukasi terbaik —
           tonton langsung tanpa keluar dari aplikasi.

@@ -128,7 +128,7 @@ export function PdfWorkspace() {
         transition={{ duration: 0.5 }}
         className="space-y-3 text-center"
       >
-        <h1 className="font-heading text-3xl font-bold tracking-tight">PDF to AI</h1>
+        <h1 className="text-3xl font-bold tracking-tight">PDF to AI</h1>
         <p className="mx-auto max-w-md text-balance text-muted-foreground">
           Ubah dokumen PDF menjadi rangkuman ringkas dan kuis interaktif —
           semuanya otomatis.

@@ -203,7 +203,7 @@ export function TryOutExperience() {
         transition={{ duration: 0.5 }}
         className="space-y-3 text-center"
       >
-        <h1 className="font-heading text-3xl font-bold tracking-tight">Try Out TKA</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Try Out TKA</h1>
         <p className="mx-auto max-w-md text-balance text-muted-foreground">
           Simulasi ujian dengan soal yang disusun AI — lengkap dengan
           pembahasan mendalam di setiap nomor.

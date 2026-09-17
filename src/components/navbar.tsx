@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -32,11 +33,19 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 flex w-full justify-center">
-      <div
+      <motion.div
+        layout
+        initial={false}
+        transition={{
+          type: "spring",
+          stiffness: 280,
+          damping: 30,
+          mass: 0.8,
+        }}
         className={cn(
-          "flex items-center gap-3 transition-all duration-300",
+          "flex items-center gap-3",
           scrolled
-            ? "mx-auto mt-0 w-fit max-w-[97vw] rounded-full bg-background/70 py-2 pr-2.5 pl-3 shadow-lg shadow-foreground/5 ring-1 ring-border/50 backdrop-blur-xl"
+            ? "mx-auto mt-1 w-fit max-w-[97vw] rounded-full bg-background/70 py-2 pr-2.5 pl-3 shadow-lg shadow-foreground/5 ring-1 ring-border/50 backdrop-blur-xl"
             : "w-full h-16 bg-transparent px-0 sm:h-18"
         )}
       >
@@ -45,22 +54,26 @@ export function Navbar() {
             onClick={closeNav}
             className="flex shrink-0 items-center gap-2.5"
           >
-            <span
+            <motion.span
+              layout
+              transition={{ type: "spring", stiffness: 280, damping: 30 }}
               className={cn(
-                "flex items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/60 text-sm font-bold text-primary-foreground shadow-inner transition-all duration-300",
-                scrolled ? "size-7" : "size-9"
+                "flex items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/60 text-sm font-bold text-primary-foreground shadow-inner",
+                scrolled ? "size-7 text-xs" : "size-9"
               )}
             >
               F
-            </span>
-            <span
+            </motion.span>
+            <motion.span
+              layout
+              transition={{ type: "spring", stiffness: 280, damping: 30 }}
               className={cn(
-                "font-semibold tracking-tight text-foreground transition-all duration-300",
+                "font-semibold tracking-tight text-foreground",
                 scrolled ? "text-sm" : "text-lg"
               )}
             >
               farhantka.app
-            </span>
+            </motion.span>
           </Link>
 
           <nav className="ml-auto hidden items-center gap-1 sm:flex">
@@ -94,7 +107,7 @@ export function Navbar() {
               {navOpen ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
           </div>
-      </div>
+        </motion.div>
 
       {navOpen && (
         <div className="absolute inset-x-3 top-full mt-2 rounded-2xl border border-border/60 bg-background/95 p-2 shadow-xl shadow-foreground/10 backdrop-blur-xl sm:hidden">

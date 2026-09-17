@@ -769,23 +769,40 @@ const socials = [
     href: "https://x.com",
     path: "M18.9 2H22l-6.8 7.8L23.3 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L2.7 2h6.5l4.4 5.9L18.9 2zm-1.1 18.1h1.7L7.4 3.8H5.5l12.3 16.3z",
   },
+  {
+    label: "LinkedIn",
+    href: "https://linkedin.com",
+    path: "M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.3a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zM19 19h-3v-4.7c0-1.1 0-2.6-1.6-2.6s-1.8 1.2-1.8 2.5V19h-3v-9h2.9v1.2a3.2 3.2 0 0 1 2.9-1.6c3 0 3.6 2 3.6 4.6z",
+  },
 ];
 
 export function LandingFooter() {
   return (
     <footer className="border-t border-border/60 bg-background/50">
       <div className="mx-auto max-w-6xl px-4 py-12">
-        <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex flex-col items-start gap-4">
-            <div className="flex items-center gap-2.5 font-semibold">
-              <span className="flex size-8 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/60 text-primary-foreground">
-                <Sparkles className="size-4" />
+        <div className="grid gap-10 sm:grid-cols-2 sm:items-start">
+          <div>
+            <div className="flex items-center gap-3.5">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/60 text-base font-bold text-primary-foreground">
+                FK
               </span>
-              farhantka.app
+              <div>
+                <p className="font-semibold">Farhan Kurnia</p>
+                <p className="text-sm text-muted-foreground">
+                  AI Developer &amp; Creative Technologist
+                </p>
+              </div>
             </div>
-            <p className="max-w-xs text-sm text-muted-foreground">
-              Belajar TKA lebih terarah bersama AI.
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
+              Pembuat farhantka.app — membangun alat belajar berbasis AI untuk
+              membantu ribuan pelajar Indonesia belajar lebih terarah.
             </p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              🇮🇩 Indonesia · Siap kolaborasi
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-6 sm:items-end sm:text-right">
             <div className="flex gap-2">
               {socials.map((s) => (
                 <a
@@ -794,6 +811,7 @@ export function LandingFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
+                  title={s.label}
                   className="flex size-9 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground transition-colors hover:text-foreground"
                 >
                   <svg
@@ -807,32 +825,17 @@ export function LandingFooter() {
                 </a>
               ))}
             </div>
-          </div>
-
-          <div className="flex flex-col gap-6 sm:flex-row sm:gap-16">
-            <nav className="flex flex-wrap gap-x-6 gap-y-2">
-              {footerLinks.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-
             <div className="flex flex-col gap-2 text-sm text-muted-foreground">
               <a
                 href="mailto:halo@farhantka.app"
-                className="flex items-center gap-2 transition-colors hover:text-foreground"
+                className="flex items-center gap-2 transition-colors hover:text-foreground sm:justify-end"
               >
                 <Mail className="size-4" />
                 halo@farhantka.app
               </a>
               <a
                 href="tel:+6281234567890"
-                className="flex items-center gap-2 transition-colors hover:text-foreground"
+                className="flex items-center gap-2 transition-colors hover:text-foreground sm:justify-end"
               >
                 <Phone className="size-4" />
                 +62 812-3456-7890
@@ -841,9 +844,13 @@ export function LandingFooter() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-border/40 pt-6 text-center">
+        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-border/40 pt-6 sm:flex-row">
           <p className="text-xs text-muted-foreground">
             © 2026 farhantka.vercel.app. Seluruh hak cipta dilindungi.
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Dibuat dengan <span className="text-primary">♥</span> di Indonesia
+            🇮🇩
           </p>
         </div>
       </div>

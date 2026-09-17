@@ -32,13 +32,19 @@ export function QuizRunner({
   const [answers, setAnswers] = useState<(number | null)[]>(
     Array(questions.length).fill(null)
   );
+  const [flagged, setFlagged] = useState<boolean[]>(
+    Array(questions.length).fill(false)
+  );
   const [resultOpen, setResultOpen] = useState(false);
   const [score, setScore] = useState(0);
   const [remaining, setRemaining] = useState(timeLimitSec ?? 0);
+  const [elapsedSec, setElapsedSec] = useState(0);
 
   const question = questions[index];
   const answeredCount = answers.filter((a) => a !== null).length;
+  const flaggedCount = flagged.filter(Boolean).length;
   const questionRef = useRef<HTMLHeadingElement>(null);
+  const startRef = useRef(Date.now());
 
   useEffect(() => {
     if (!resultOpen) questionRef.current?.focus();
@@ -66,6 +72,9 @@ export function QuizRunner({
       if (picked !== -1 && picked < question.options.length) {
         e.preventDefault();
         setAnswer(picked);
+      } else if (e.key === "r" || e.key === "R") {
+        e.preventDefault();
+        toggleFlag(index);
       } else if (e.key === "ArrowRight" && index < questions.length - 1) {
         e.preventDefault();
         setIndex((i) => i + 1);
@@ -78,6 +87,14 @@ export function QuizRunner({
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [resultOpen, index, question.options.length, questions.length]);
+
+  function toggleFlag(i: number) {
+    setFlagged((prev) => {
+      const next = [...prev];
+      next[i] = !next[i];
+      return next;
+    });
+  }
 
   function select(optionIndex: number) {
     setAnswers((prev) => {
@@ -93,6 +110,7 @@ export function QuizRunner({
       0
     );
     setScore(finalScore);
+    setElapsedSec(Math.max(1, Math.round((Date.now() - startRef.current) / 1000)));
     addScore({ topic, score: finalScore, total: questions.length, source });
     setResultOpen(true);
   }
@@ -119,15 +137,17 @@ export function QuizRunner({
 
   function retry() {
     setAnswers(Array(questions.length).fill(null));
+    setFlagged(Array(questions.length).fill(false));
     setIndex(0);
     setResultOpen(false);
     setRemaining(timeLimitSec ?? 0);
+    startRef.current = Date.now();
     onRetry?.();
   }
 
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 py-10">
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="secondary">
             Soal {index + 1} dari {questions.length}
@@ -135,6 +155,24 @@ export function QuizRunner({
           <Badge variant="outline">{topic}</Badge>
         </div>
         <div className="flex items-center gap-3">
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => toggleFlag(index)}
+            className={cn(
+              flagged[index] &&
+                "border-amber-500/60 bg-amber-500/10 text-amber-600 dark:text-amber-400"
+            )}
+            aria-pressed={flagged[index]}
+          >
+            <Flag
+              className={cn(
+                "size-3.5",
+                flagged[index] && "fill-amber-400 text-amber-400"
+              )}
+            />
+            {flagged[index] ? "Ragu" : "Tandai Ragu"}
+          </Button>
           {timeLimitSec ? (
             <Badge
               variant="outline"
@@ -150,6 +188,12 @@ export function QuizRunner({
           ) : null}
           <span className="shrink-0 text-xs text-muted-foreground">
             Terjawab {answeredCount}/{questions.length}
+            {flaggedCount > 0 && (
+              <span className="text-amber-500">
+                {" "}
+                · ragu {flaggedCount}
+              </span>
+            )}
           </span>
         </div>
       </div>
@@ -203,7 +247,7 @@ export function QuizRunner({
         </motion.div>
       </AnimatePresence>
 
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <Button
           variant="outline"
           onClick={() => setIndex((i) => Math.max(0, i - 1))}
@@ -213,22 +257,30 @@ export function QuizRunner({
           <span className="hidden sm:inline">Sebelumnya</span>
         </Button>
 
-        <div className="hidden gap-1 sm:flex">
+        <div className="flex flex-wrap gap-1.5">
           {questions.map((_, i) => (
             <button
               key={i}
               type="button"
-              aria-label={`Soal ${i + 1}`}
+              aria-label={`Loncat ke soal ${i + 1}`}
               onClick={() => setIndex(i)}
               className={cn(
-                "size-2 rounded-full transition-colors",
+                "flex size-8 items-center justify-center rounded-lg border text-xs font-medium tabular-nums transition-all",
                 i === index
-                  ? "bg-primary"
-                  : answers[i] !== null
-                    ? "bg-primary/40"
-                    : "bg-border"
+                  ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                  : flagged[i]
+                    ? "border-amber-500/60 bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                    : answers[i] !== null
+                      ? "border-primary/50 bg-primary/15 text-primary"
+                      : "border-border/60 bg-card text-muted-foreground hover:border-ring"
               )}
-            />
+            >
+              {flagged[i] && answers[i] === null ? (
+                <Flag className="size-3" />
+              ) : (
+                i + 1
+              )}
+            </button>
           ))}
         </div>
 
@@ -249,6 +301,25 @@ export function QuizRunner({
         )}
       </div>
 
+      <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] text-muted-foreground">
+        <span className="flex items-center gap-1.5">
+          <span className="size-2.5 rounded-sm border border-primary bg-primary" />
+          Sedang dikerjakan
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="size-2.5 rounded-sm border border-primary/50 bg-primary/15" />
+          Terjawab
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="size-2.5 rounded-sm border border-amber-500/60 bg-amber-500/10" />
+          Ragu
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="size-2.5 rounded-sm border border-border/60 bg-card" />
+          Belum dijawab
+        </span>
+      </div>
+
       <ResultDialog
         open={resultOpen}
         onOpenChange={(open) => {
@@ -258,6 +329,7 @@ export function QuizRunner({
         questions={questions}
         answers={answers}
         score={score}
+        elapsedSec={elapsedSec}
         onRetry={retry}
       />
     </div>

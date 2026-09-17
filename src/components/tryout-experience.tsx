@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
@@ -12,10 +11,12 @@ import {
   Languages,
   Layers,
   Lightbulb,
+  ListChecks,
   Loader2,
   Sigma,
   Sparkles,
   Sprout,
+  Timer,
   TrendingUp,
   Wand2,
   Zap,
@@ -36,37 +37,37 @@ const SUBJECTS = [
     name: "Bahasa Indonesia",
     icon: BookOpenText,
     track: "Wajib",
-    img: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=600&q=60",
+    gradient: "from-rose-500 to-red-600",
   },
   {
     name: "Matematika",
     icon: Sigma,
     track: "Wajib",
-    img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=600&q=60",
+    gradient: "from-sky-500 to-blue-600",
   },
   {
     name: "Bahasa Inggris",
     icon: Languages,
     track: "Wajib",
-    img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=600&q=60",
+    gradient: "from-violet-500 to-purple-600",
   },
   {
     name: "Bahasa Inggris Tingkat Lanjut",
     icon: GraduationCap,
     track: "Pilihan",
-    img: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=600&q=60",
+    gradient: "from-indigo-500 to-blue-700",
   },
   {
     name: "Produk Kreatif dan Kewirausahaan",
     icon: Lightbulb,
     track: "Pilihan",
-    img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=60",
+    gradient: "from-amber-500 to-orange-600",
   },
   {
     name: "Campuran Semua Mapel",
     icon: Layers,
     track: "Gabungan",
-    img: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=600&q=60",
+    gradient: "from-slate-500 to-slate-700",
     mixed: true,
   },
 ];
@@ -106,6 +107,14 @@ const DIFFICULTIES: {
 ];
 
 const COUNTS = [10, 15, 20];
+
+function SummaryChip({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="flex items-center gap-1 rounded-full border border-border/60 bg-accent/40 px-2.5 py-1 text-xs font-medium text-muted-foreground">
+      {children}
+    </span>
+  );
+}
 
 export function TryOutExperience() {
   const [mode, setMode] = useState<"quick" | "custom">("quick");
@@ -203,10 +212,16 @@ export function TryOutExperience() {
         transition={{ duration: 0.5 }}
         className="space-y-3 text-center"
       >
-        <h1 className="font-heading text-3xl font-bold tracking-tight">Try Out TKA</h1>
+        <div className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
+          <ListChecks className="size-3.5 text-primary" />
+          Pilihan ganda · 4 opsi · pembahasan di tiap nomor
+        </div>
+        <h1 className="font-heading text-3xl font-bold tracking-tight">
+          Simulasi ujian. Bukan sekadar kuis.
+        </h1>
         <p className="mx-auto max-w-md text-balance text-muted-foreground">
-          Simulasi ujian dengan soal yang disusun AI — lengkap dengan
-          pembahasan mendalam di setiap nomor.
+          Pilih mapel & tingkat kesulitan, AI menyusun soal pilihan ganda
+          lengkap dengan pembahasan — sepadat ujian sungguhan.
         </p>
       </motion.div>
 
@@ -341,21 +356,22 @@ export function TryOutExperience() {
                             : "border-border/60 hover:border-ring/60"
                         )}
                       >
-                        <div className="relative h-24 w-full overflow-hidden">
-                          <Image
-                            src={s.img}
-                            alt=""
-                            fill
-                            sizes="(max-width: 640px) 100vw, 50vw"
-                            className="object-cover transition-transform duration-500 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                        <div
+                          className={cn(
+                            "relative flex h-24 w-full items-center justify-center bg-gradient-to-br",
+                            s.gradient
+                          )}
+                        >
                           <span className="absolute top-2 right-2 rounded-full bg-black/40 px-2 py-0.5 text-xs font-medium text-white backdrop-blur-sm">
                             {s.track}
                           </span>
-                          <span className="absolute bottom-2 left-3 flex items-center gap-1.5 text-sm font-semibold text-white drop-shadow-md">
-                            <Icon className="size-4" />
-                            {s.name}
+                          <span
+                            className={cn(
+                              "flex size-11 items-center justify-center rounded-2xl bg-white/20 text-white backdrop-blur-sm transition-transform duration-300 group-hover:scale-110",
+                              active && "ring-2 ring-white/60"
+                            )}
+                          >
+                            <Icon className="size-5" />
                           </span>
                         </div>
                         <div
@@ -370,8 +386,8 @@ export function TryOutExperience() {
                               Dipilih
                             </span>
                           ) : (
-                            <span className="text-xs text-muted-foreground">
-                              Pilih mapel ini
+                            <span className="line-clamp-2 px-2 text-center text-xs font-medium text-muted-foreground">
+                              {s.name}
                             </span>
                           )}
                         </div>
@@ -513,11 +529,20 @@ export function TryOutExperience() {
           )}
         </AnimatePresence>
 
-        <div className="flex items-center justify-between border-t border-border/60 pt-5">
-          <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
-            <Zap className="size-3.5 text-primary" />
-            Skor tersimpan otomatis di perangkat ini
-          </p>
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-5">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <SummaryChip>
+              {mode === "custom" ? "Custom" : subject}
+            </SummaryChip>
+            {mode === "quick" && (
+              <SummaryChip>{difficulty}</SummaryChip>
+            )}
+            <SummaryChip>{count} soal</SummaryChip>
+            <SummaryChip>
+              <Timer className="size-3 text-primary" />
+              ±{Math.ceil(count * 1.5)} mnt
+            </SummaryChip>
+          </div>
           <Button size="lg" onClick={generate} disabled={loading}>
             {loading ? <Loader2 className="animate-spin" /> : <Sparkles />}
             {loading ? "Menyusun soal…" : "Generate Soal"}

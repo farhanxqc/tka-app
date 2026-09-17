@@ -745,14 +745,6 @@ export function CtaBanner() {
   );
 }
 
-const footerLinks = [
-  { label: "Beranda", href: "/" },
-  { label: "Try Out", href: "/tryout" },
-  { label: "Belajar", href: "/belajar" },
-  { label: "PDF to AI", href: "/pdf" },
-  { label: "Progres", href: "/progres" },
-];
-
 const socials = [
   {
     label: "Instagram",

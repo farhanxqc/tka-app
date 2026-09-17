@@ -1,6 +1,5 @@
 import { Hero } from "@/components/hero";
 import {
-  CtaBanner,
   FaqSection,
   FeaturesGrid,
   HowItWorks,
@@ -14,7 +13,6 @@ export default function HomePage() {
       <FeaturesGrid />
       <HowItWorks />
       <FaqSection />
-      <CtaBanner />
       <LandingFooter />
     </div>
   );

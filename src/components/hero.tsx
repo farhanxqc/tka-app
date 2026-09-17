@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "motion/react";
 import {
   ArrowLeft,
   ArrowRight,
-  FileUp,
   Lock,
   Plus,
   RefreshCw,
@@ -45,8 +44,8 @@ export function Hero() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="w-full max-w-3xl text-4xl leading-[1.1] font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl"
       >
-        Persiapan TKA terarah,{" "}
-        <span className="text-primary">ditenagai AI</span>
+        Ubah materimu jadi latihan TKA{" "}
+        <span className="text-primary">secara terarah</span>
       </motion.h1>
 
       <motion.p
@@ -66,17 +65,8 @@ export function Hero() {
         className="flex flex-wrap items-center justify-center gap-3"
       >
         <Button size="lg" nativeButton={false} render={<Link href="/tryout" />}>
-          <Rocket />
-          Mulai Try Out
-        </Button>
-        <Button
-          size="lg"
-          variant="outline"
-          nativeButton={false}
-          render={<Link href="/pdf" />}
-        >
-          <FileUp />
-          Olah Materi PDF
+          Mulai Gratis Sekarang
+          <ArrowRight />
         </Button>
       </motion.div>
 

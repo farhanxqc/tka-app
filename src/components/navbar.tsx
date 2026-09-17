@@ -43,16 +43,8 @@ export function Navbar() {
         <Link
           href="/"
           onClick={closeNav}
-          className="flex h-full shrink-0 items-center gap-2.5 justify-self-start pl-1"
+          className="flex h-full shrink-0 items-center justify-self-start pl-1"
         >
-          <span
-            className={cn(
-              "flex items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/60 font-bold text-primary-foreground shadow-inner transition-[width,height,font-size] duration-300 ease-out",
-              scrolled ? "size-7 text-xs" : "size-9 text-sm"
-            )}
-          >
-            F
-          </span>
           <span
             className={cn(
               "font-semibold tracking-tight text-foreground transition-[font-size] duration-300 ease-out",
